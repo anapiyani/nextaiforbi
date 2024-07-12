@@ -16,16 +16,6 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -33,3 +23,198 @@ body {
 }
 
 
+.peerConnectionState-new {
+  color: cornflowerblue;
+}
+
+.peerConnectionState-connecting {
+  color: orange;
+}
+
+.peerConnectionState-connected {
+  color: green;
+}
+
+.peerConnectionState-disconnected,
+.peerConnectionState-closed,
+.peerConnectionState-failed {
+  color: red;
+}
+
+.iceConnectionState-new {
+  color: cornflowerblue;
+}
+
+.iceConnectionState-checking {
+  color: orange;
+}
+
+.iceConnectionState-connected,
+.iceConnectionState-completed {
+  color: green;
+}
+
+.peerConnectionState-disconnected,
+.peerConnectionState-closed,
+.peerConnectionState-failed {
+  color: red;
+}
+
+.iceGatheringState-new {
+  color: cornflowerblue;
+}
+
+.iceGatheringState-gathering {
+  color: orange;
+}
+
+.iceGatheringState-complete {
+  color: black;
+}
+
+.signalingState-stable {
+  color: green;
+}
+
+.signalingState-have-local-offer,
+.signalingState-have-remote-offer,
+.signalingState-have-local-pranswer,
+.signalingState-have-remote-pranswer {
+  color: cornflowerblue;
+}
+
+.signalingState-closed {
+  color: red;
+}
+
+.streamingState-streaming {
+  color: green;
+}
+
+.streamingState-empty {
+  color: grey;
+}
+
+.streamEvent-started {
+  color: green;
+}
+
+.streamEvent-done {
+  color: orange;
+}
+
+.streamEvent-ready {
+  color: green;
+}
+
+.streamEvent-error {
+  color: red;
+}
+
+.streamEvent-dont-care {
+  color: gray;
+}
+
+/* added css from here */
+
+body * {
+  font-family: 'Mulish', sans-serif;
+  text-align: center;
+}
+
+#content {
+  width: 820px;
+  position: relative;
+  margin: 0 auto;
+}
+
+#buttons {
+  clear: both;
+  padding: 0 0 0 0;
+  text-align: center;
+}
+
+button {
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: none;
+  font-size: 16px;
+  margin: 0 5px;
+  background-color: #7459fe;
+  color: #fff;
+}
+
+button:hover {
+  background-color: #9480ff;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+}
+
+#status {
+  clear: both;
+  padding: 20px 0 0 0;
+  text-align: left;
+  display: inline-block;
+  zoom: 1;
+  line-height: 140%;
+  font-size: 15px;
+}
+
+#status div {
+  padding-bottom: 10px;
+}
+
+#video-wrapper {
+  background: url(../assets/bg.png);
+  height: 500px;
+  background-position: top;
+}
+
+#video-wrapper div {
+  position: relative;
+  height: 100%;
+  width: 400px;
+  margin: 0 auto;
+}
+
+video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /*border:1px solid;*/
+  border-radius: 50%;
+}
+
+.textfield {
+  margin: 30px;
+}
+
+#input-send {
+  padding: 10px;
+  border-radius: 12px;
+  border: 0.5px solid #9480ff;
+  text-align: start;
+  color: black;
+}
+
+.add-auto-file {
+  margin: 30px;
+}
+
+#file {
+  padding: 10px;
+  border-radius: 12px;
+  border: 0.5px solid #9480ff;
+  text-align: start;
+}
+
+#send-button {
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: none;
+  font-size: 16px;
+  margin: 0 5px;
+  background-color: #7459fe;
+  color: #fff;
+}
