@@ -45,13 +45,23 @@ const Page = () => {
   const [start_time, setStartTime] = useState(0);
   const [timeIsRunning, setTimeIsRunning] = useState(false);
 
+  // useEffect(() => {
+  //   let intervalId: any;
+  //   if (timeIsRunning) {
+  //     intervalId = setInterval(() => setStartTime(start_time + 1), 10);
+  //   }
+  //   return () => clearInterval(intervalId);
+  // }, [timeIsRunning, start_time]);
+
   useEffect(() => {
     let intervalId: any;
     if (timeIsRunning) {
-      intervalId = setInterval(() => setStartTime(start_time + 1), 10);
+      intervalId = setInterval(() => {
+        setStartTime((prevTime) => prevTime + 1); // Increment by 1 every second
+      }, 1000); // 1000 milliseconds = 1 second
     }
     return () => clearInterval(intervalId);
-  }, [timeIsRunning, start_time]);
+  }, [timeIsRunning]);
 
   const seconds = Math.floor((start_time % 6000) / 100);
 
@@ -125,7 +135,7 @@ const Page = () => {
         peer_connection?.iceConnectionState === "connected") &&
       is_stream_ready
     ) {
-      console.log("stream_id", stream_id);
+      startTime();
       const playResponse = await fetchWithRetries(
         `${DID_API.url}/${DID_API.service}/streams/${stream_id}`,
         {
@@ -156,7 +166,6 @@ const Page = () => {
       );
 
       if (playResponse.ok) {
-        startTime();
         if (readButtonRef.current)
           readButtonRef.current.textContent = "Streaming...";
       } else {
@@ -169,7 +178,6 @@ const Page = () => {
       if (readButtonRef.current)
         readButtonRef.current.textContent = "Unable to Connect";
       stopTime();
-      reset();
     }
   };
 
@@ -248,6 +256,7 @@ const Page = () => {
     });
 
     stopAllStreams();
+    reset();
     closePC();
   };
 
@@ -411,10 +420,11 @@ const Page = () => {
         case "stream/started":
           status = "started";
           stopTime();
-          reset();
           break;
         case "stream/done":
           status = "done";
+          stopTime();
+          reset();
           break;
         case "stream/ready":
           status = "ready";
@@ -689,7 +699,7 @@ const Page = () => {
           id="streaming-status-label"
         ></label>
         <br />
-        <label>Starts in: {start_time}</label>
+        <label>Time: {start_time}</label>
       </div>
 
       <div id="react-root"></div>
